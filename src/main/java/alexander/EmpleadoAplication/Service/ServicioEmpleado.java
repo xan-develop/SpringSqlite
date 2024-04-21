@@ -57,6 +57,7 @@ public List<Empleado> getAllEmpleados(){
 
     public void updateEmpleados(Empleado empleado){
     repemp.save(empleado);
+    //Actualiza empleado
 }
 
 }
