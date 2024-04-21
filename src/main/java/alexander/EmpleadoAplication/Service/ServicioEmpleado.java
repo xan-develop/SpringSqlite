@@ -1,6 +1,8 @@
 package alexander.EmpleadoAplication.Service;
 
 import alexander.EmpleadoAplication.Entidades.Empleado;
+import alexander.EmpleadoAplication.Repo.EmpleadoRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,6 +22,8 @@ public class ServicioEmpleado {
             new Empleado(5, "Carlos Martinez", "Tecnología")
 
     ));
+    @Autowired
+    EmpleadoRepo repemp;
 
 public List<Empleado> getAllEmpleados(){
             return listaEmpleados;
@@ -32,8 +36,8 @@ public List<Empleado> getAllEmpleados(){
     }
     public void createEmpleado(Empleado emp){
 
-    listaEmpleados.add(emp);
 
+        repemp.save(emp);
     }
 
     public void deleteEmpleado(int id){
@@ -52,16 +56,7 @@ public List<Empleado> getAllEmpleados(){
 
 
     public void updateEmpleados(Empleado empleado){
-    ArrayList<Empleado> copia = new ArrayList<>();
-    for (Empleado emp : listaEmpleados){
-
-        if (emp.getIdempleado() == empleado.getIdempleado()){
-            emp.setNombre(empleado.getNombre());
-            emp.setDepart(empleado.getDepart());
-        }
-        copia.add(emp);
-    }
-    listaEmpleados = copia;
+    repemp.save(empleado);
 }
 
 }
