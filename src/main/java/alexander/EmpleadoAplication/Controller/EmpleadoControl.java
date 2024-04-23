@@ -6,9 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @ResponseBody
@@ -24,7 +23,7 @@ import java.util.List;
             return ser.getAllEmpleados();
         }
         @RequestMapping("/empleados/{id}")
-            public Empleado findAnEmpleado(@PathVariable int id){
+            public Optional<Empleado> findAnEmpleado(@PathVariable int id){
             return ser.getAnEmpleado(id);
             }
 
@@ -37,6 +36,7 @@ import java.util.List;
 
         @RequestMapping(value = "/empleados/{id}", method = RequestMethod.PUT)
             public void updateEmpleado(@PathVariable int id,@RequestBody Empleado emp){
+                emp.setIdempleado(id);
                 ser.updateEmpleados(emp);
             }
 

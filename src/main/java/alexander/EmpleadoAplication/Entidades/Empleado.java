@@ -1,9 +1,6 @@
 package alexander.EmpleadoAplication.Entidades;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 
@@ -14,6 +11,9 @@ public class Empleado {
     String Nombre;
     String Depart;
 
+    @OneToOne
+    @JoinColumn(name = "fk_dir")
+    private Direccion dir;
 
     public Empleado(){}
     public Empleado(int idempleado, String nombre, String depart) {
@@ -44,5 +44,13 @@ public class Empleado {
 
     public void setDepart(String depart) {
         Depart = depart;
+    }
+
+    public Direccion getDir() {
+        return dir;
+    }
+
+    public void setDir(Direccion dir) {
+        this.dir = dir;
     }
 }
